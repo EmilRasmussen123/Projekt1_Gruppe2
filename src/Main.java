@@ -1,6 +1,7 @@
 public class Salon {
     public static void main(String[] args) {
         System.out.println("Velkommen til dit nye Booking System");
+         ArrayList<String> list = new ArrayList<>();
 
     }
 }
