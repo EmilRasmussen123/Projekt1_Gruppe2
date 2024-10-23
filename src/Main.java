@@ -13,13 +13,26 @@ public class Salon {
 
 
         while (true) {
+            Scanner sc = new Scanner(System.in);
             System.out.println();
             System.out.println("Book Her -->");
             system.createBooking();
             System.out.println();
             system.displayBookings();
 
+            System.out.println("Vil du afslutte pogrammet (yes/no)");
+            String response = sc.nextLine().toLowerCase();
+            if (response.equals("yes")) {
+                break;
+            } else if (response.equals("no")) {
+                system.createBooking();
+            } else {
+                System.out.println("Svar venligst (yes/no)");
+            }
+
         }
+
+
 
 
         }
