@@ -11,14 +11,21 @@ public class Salon {
     public static void main(String[] args) {
         bookingSystem system = new bookingSystem();
 
+
         while (true) {
             System.out.println();
             System.out.println("Book Her -->");
             system.createBooking();
+            System.out.println();
             system.displayBookings();
+
         }
-    }
-    }
+
+
+        }
+
+        }
+
 
 class booking {
     String name;
@@ -34,8 +41,6 @@ class booking {
     public String toString() {
         return "Name: " + name + ", Date: " + bookingDate + ", Time: " + bookingTime;
     }
-
-
 }
 
 class bookingSystem {
@@ -51,7 +56,7 @@ class bookingSystem {
         //While loopen for at book en dato
         while (bookingDate == null) {
             System.out.println();
-            System.out.println("Book Dato (DD-MM):");
+            System.out.println("Book Dato (MM-DD):");
             try {
                 String dateInput = sc.nextLine();
 
