@@ -10,24 +10,15 @@ import java.util.Scanner;
 public class Salon {
     public static void main(String[] args) {
         bookingSystem system = new bookingSystem();
-        Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nNy Booking? (yes/no)");
-            String response = sc.nextLine().toLowerCase();
-
-            if (response.equals("yes")) {
-                system.createBooking();
-            } else if (response.equals("no")) {
-                break;
-            } else {
-                System.out.println("Svar venligst (yes/no)");
-            }
+            System.out.println();
+            System.out.println("Book Her -->");
+            system.createBooking();
+            system.displayBookings();
         }
-
-        system.displayBookings();
     }
-}
+    }
 
 class booking {
     String name;
@@ -56,7 +47,7 @@ class bookingSystem {
         LocalTime bookingTime = null;
         String name = "";
         int currentYear = LocalDate.now().getYear();
-        
+
         //While loopen for at book en dato
         while (bookingDate == null) {
             System.out.println();
@@ -90,7 +81,7 @@ class bookingSystem {
                 System.out.println("Ugyldig format, venligst re-enter");
             }
         }
-        
+
         //Tjekker hvis navn, dato og tid er optaget
         if (isBookingAvailable(bookingDate, bookingTime)) {
             System.out.println("Skriv Navnet:");
@@ -110,7 +101,7 @@ class bookingSystem {
             System.out.println("Datoen og Tiden er ikke tilgændlig .");
         }
     }
-    
+
     //Hvis den nye booking matcher den forrige
     private boolean isBookingAvailable(LocalDate bookingDate, LocalTime bookingTime) {
         for (booking booking : bookings) {
