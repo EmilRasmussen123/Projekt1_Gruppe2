@@ -1,4 +1,4 @@
-package Project_1;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -7,28 +7,28 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Salon {
+
+class Salon {
     public static void main(String[] args) {
         bookingSystem system = new bookingSystem();
-
 
         while (true) {
             Scanner sc = new Scanner(System.in);
             System.out.println();
-            System.out.println("Book Her -->");
+            System.out.println("Book Her -->");                         // ??
             system.createBooking();
             System.out.println();
             system.displayBookings();
 
             System.out.println("Vil du afslutte pogrammet (yes/no)");
-            String response = sc.nextLine().toLowerCase();
-            if (response.equals("yes")) {
+            String response = sc.nextLine();                                        // Lav substring index 0 - 1
+            if (response.equalsIgnoreCase("yes")) {                               // equalsIgnoreCase("y")
                 break;
-            } else if (response.equals("no")) {
+            } else if (response.equals("no")) {                         // equalsIgnoreCase("n")
                 system.createBooking();
             } else {
                 System.out.println("Svar venligst (yes/no)");
-            }
+            }                                                           // Det her burde være en switch
 
         }
 
@@ -40,21 +40,7 @@ public class Salon {
         }
 
 
-class booking {
-    String name;
-    LocalDate bookingDate;
-    LocalTime bookingTime;
 
-    booking(String name, LocalDate bookingDate, LocalTime bookingTime) {
-        this.name = name;
-        this.bookingDate = bookingDate;
-        this.bookingTime = bookingTime;
-    }
-
-    public String toString() {
-        return "Name: " + name + ", Date: " + bookingDate + ", Time: " + bookingTime;
-    }
-}
 
 class bookingSystem {
     ArrayList<booking> bookings = new ArrayList<>();
@@ -73,9 +59,9 @@ class bookingSystem {
             try {
                 String dateInput = sc.nextLine();
 
-                if (dateInput.matches("\\d{2}-\\d{2}")) {
-                    dateInput = currentYear + "-" + dateInput;
-                }
+                if (dateInput.matches("\\d{2}-\\d{2}")) {               // ("\\d{2}[.-/:]\\d{2}")
+                    dateInput = currentYear + "-" + dateInput;          // Tillader også . eller /
+                }                                                       // MEN så skal den skrive det om - det er et forslag
 
                 bookingDate = LocalDate.parse(dateInput);
             } catch (DateTimeParseException e) {
