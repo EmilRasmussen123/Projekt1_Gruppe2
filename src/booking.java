@@ -13,7 +13,7 @@ public class booking {
     }
 
     public String toString() {
-        return "Name: " + name + ", Date: " + bookingDate + ", Time: " + bookingTime;    // Date, time, name - nemmer at kigge igennem i en liste
+        return "Date: " + bookingDate + ", Time: " + bookingTime  + ", Name: " + name ;    // Date, time, name - nemmer at kigge igennem i en liste
     }
 }
 
