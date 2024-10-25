@@ -4,6 +4,10 @@ import java.util.Scanner;
 
 class Salon {
     public static void main(String[] args) {
+        while (!password.verifyPassword()) {
+            // Gentager, indtil den korrekte adgangskode er indtastet
+        }
+
         bookingSystem system = new bookingSystem();
 
         while (true) {
