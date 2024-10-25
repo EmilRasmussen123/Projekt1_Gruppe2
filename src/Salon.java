@@ -13,25 +13,29 @@ class Salon {
             system.createBooking();
             System.out.println();
             system.displayBookings();
-
+            System.out.println();
             System.out.println("Vil du afslutte pogrammet (yes/no)");
-            String response = sc.nextLine();                                        // Lav substring index 0 - 1
-            if (response.equalsIgnoreCase("yes")) {                               // equalsIgnoreCase("y")
-                break;
-            } else if (response.equals("no")) {                         // equalsIgnoreCase("n")
-                system.createBooking();
-            } else {
-                System.out.println("Svar venligst (yes/no)");
-            }                                                           // Det her burde være en switch
 
+            String response = sc.nextLine().trim();
+            // Lav substring index 0 - 1
+            if (response.length() > 0) { // sørger for at der mindst er et tegn
+                switch (response.substring(0, 1).toLowerCase()) {
+                    case "y":
+                    case "j":
+                        System.out.println("Programmet afsluttes.");
+                        return;
+                    case "n":
+                        System.out.println("programmet køres igen.");
+                        break;
+                    default:
+                        System.out.println("svar venligst (ja/nej)");
+                        break;
+
+                }
+            }
         }
-
-
-
-
-        }
-
-        }
+    }
+}
 
 
 
