@@ -1,3 +1,4 @@
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -72,6 +73,12 @@ class bookingDato {
                     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //udprinter i formatet yyyy-MM-dd.
                     bookingDate = LocalDate.parse(fullDateInput, dateFormatter);
 
+                    // Tjekker om dagen er en hverdag
+                    DayOfWeek dayOfWeek = bookingDate.getDayOfWeek();
+                    if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) {
+                        System.out.println("Bookning er kun tilladt fra mandag til fredag. Prøv igen.");
+                        bookingDate = null;
+                    }
                 } else{
                     System.out.println("Ugyldig format, venligst re-enter (MM-DD)");
                 }
@@ -97,6 +104,16 @@ class bookingTid {
                 if (inputTime.matches("\\d{2}:\\d{2}")) {
                     DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
                     bookingTime = LocalTime.parse(inputTime, timeFormatter);
+
+                    // Tjekker, om tiden er inden for åbningstiden og i 30-minutters intervaller
+                    if (bookingTime.isBefore(LocalTime.of(10, 0)) || bookingTime.isAfter(LocalTime.of(18, 0))) {
+                        System.out.println("Tid skal være mellem 10:00 og 18:00. Prøv igen.");
+                        bookingTime = null;
+                    } else if (bookingTime.getMinute() != 0 && bookingTime.getMinute() != 30) {
+                        System.out.println("Tid skal være i 30 minutters intervaller (f.eks. 10:00, 10:30). Prøv igen.");
+                        bookingTime = null;
+                    }
+
                 }else {
                     System.out.println("Ugyldig format, venligst re-enter (HH:mm)");
                 }
