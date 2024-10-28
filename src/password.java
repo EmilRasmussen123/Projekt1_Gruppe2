@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class password {
-    private static String PASSWORD = "harryhairy";
+    private static String PASSWORD = "hairyharry";
 
     // Metode der tjekker adgangskoden
     public static boolean verifyPassword() {
