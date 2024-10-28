@@ -4,16 +4,17 @@ import java.util.Scanner;
 
 class Salon {
     public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        bookingSystem system = new bookingSystem();
+
         while (!password.verifyPassword()) {
             // Gentager, indtil den korrekte adgangskode er indtastet
         }
 
-        bookingSystem system = new bookingSystem();
-
         while (true) {
-            Scanner sc = new Scanner(System.in);
             System.out.println();
-            System.out.println("Book Her -->");                         // ??
+            System.out.println("Book Her -->");
             system.createBooking();
             System.out.println();
             system.displayBookings();
