@@ -5,13 +5,23 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.HashSet;
+import java.util.Set;
+
 class bookingSystem {
-    ArrayList<booking> bookings = new ArrayList<>();
+    ArrayList<booking> bookings = new ArrayList<>(); //liste over bookings
+    Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
+
+    public bookingSystem(){
+        // her kan man tilføje feriedage hvis nu harry skal på feriejuleaften fx.
+
+        feriedage.add(LocalDate.of(2024,12,24));
+    }
 
     public void createBooking() {
         Scanner sc = new Scanner(System.in);
         String name = "";
-        LocalDate bookingDate = new bookingDato().setBookingDate(sc);
+        LocalDate bookingDate = new bookingDato(feriedage).setBookingDate(sc);
         LocalTime bookingTime = new bookingTid().setBookingTime(sc);
 
         //Tjekker først om bookingdate og bookingtime er ledig for, du kan skrive navnet
@@ -57,6 +67,11 @@ class bookingSystem {
 }
 //
 class bookingDato {
+    Set<LocalDate> feriedage;
+
+    public bookingDato(Set<LocalDate> feriedage){
+        this.feriedage = feriedage;
+    }
     public LocalDate setBookingDate(Scanner sc) {
         LocalDate bookingDate = null;
         int currentYear = LocalDate.now().getYear();
@@ -77,6 +92,9 @@ class bookingDato {
                     DayOfWeek dayOfWeek = bookingDate.getDayOfWeek();
                     if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) {
                         System.out.println("Bookning er kun tilladt fra mandag til fredag. Prøv igen.");
+                        bookingDate = null;
+                    } else if (feriedage.contains(bookingDate)) { // Tjekker om dagen er en feriedag
+                        System.out.println("Denne dag er en feriedag og kan ikke bookes. Vælg en anden dato.");
                         bookingDate = null;
                     }
                 } else{
