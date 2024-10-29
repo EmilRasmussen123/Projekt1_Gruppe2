@@ -26,7 +26,7 @@ public class kalenderSimpel {
     }
 
     static ArrayList<String> midlertidigListe () throws IOException {
-        ArrayList<String> bookinger = new ArrayList<>();              //Lav en midlertidig liste
+        ArrayList<String> bookinger = new ArrayList<>();              //Lav txt filen til en midlertidig liste
         String dato = kalenderReaderBuffed.readLine();
         while (dato != null) {
             bookinger.add(dato);
@@ -35,7 +35,7 @@ public class kalenderSimpel {
         return bookinger;
     }
 
-    static void nyBooking(String booking) throws IOException {
+    static void nyBooking(String booking) throws IOException {      //Skal have booking.toString som input
         kalenderPrinter.println(booking);
         kalenderPrinter.close();
     }
@@ -53,7 +53,7 @@ public class kalenderSimpel {
     }
 
     static String dato(String booking) throws IOException {
-        ArrayList<String> bookinger = new ArrayList<>();              //Lav en midlertidig liste
+        ArrayList<String> bookinger = new ArrayList<>();                    //Lav en midlertidig liste
         String dato = kalenderReaderBuffed.readLine();
         while (dato != null) {
             if (booking.substring(0,16).equals(dato.substring(0,16))) {     //Hvis datoen matcher
@@ -61,6 +61,6 @@ public class kalenderSimpel {
             }
             dato = kalenderReaderBuffed.readLine();
         }
-        return dato + String.join("\t",bookinger);
+        return booking.substring(0,16)+",\t" + String.join("     ",bookinger);
     }
 }
