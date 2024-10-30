@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,7 +10,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 class bookingSystem {
-    ArrayList<booking> bookings = new ArrayList<>(); //liste over bookings
+    static ArrayList<booking> bookings; //liste over bookings
+
+    static {
+        try {
+            bookings = kalenderSimpel.bookingerObjektListe();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
 
     public bookingSystem(){
@@ -18,7 +28,7 @@ class bookingSystem {
         feriedage.add(LocalDate.of(2024,12,24));
     }
 
-    public void createBooking() {
+    public void createBooking() throws IOException {
         Scanner sc = new Scanner(System.in);
         String name = "";
         LocalDate bookingDate = new bookingDato(feriedage).setBookingDate(sc);

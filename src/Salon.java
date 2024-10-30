@@ -1,9 +1,10 @@
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 class Salon {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner sc = new Scanner(System.in);
         bookingSystem system = new bookingSystem();
@@ -27,6 +28,7 @@ class Salon {
                 switch (response.substring(0, 1).toLowerCase()) {
                     case "y":
                     case "j":
+                        kalenderSimpel.nyBooking();
                         System.out.println("Programmet afsluttes.");
                         return;
                     case "n":
