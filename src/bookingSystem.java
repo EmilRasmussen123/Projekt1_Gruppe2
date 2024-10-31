@@ -28,7 +28,7 @@ class bookingSystem {
         feriedage.add(LocalDate.of(2024,12,24));
     }
 
-    public void createBooking() throws IOException {
+    public void createBooking() {
         Scanner sc = new Scanner(System.in);
         String name = "";
         LocalDate bookingDate = new bookingDato(feriedage).setBookingDate(sc);
@@ -88,7 +88,7 @@ class bookingDato {
 
         while (bookingDate == null) {
             System.out.println();
-            System.out.println("Book Dato (MM-DD):");
+            System.out.println("Book Dato (MM-dd):");
 
             try {
                 String dateInput = sc.nextLine();
