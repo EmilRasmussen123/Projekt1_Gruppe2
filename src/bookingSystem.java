@@ -24,6 +24,7 @@ class bookingSystem {
 
     ; //liste over bookings
 
+
     Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
 
     public bookingSystem() throws IOException {
@@ -55,6 +56,46 @@ class bookingSystem {
             System.out.println(newbooking);
         } else {
             System.out.println("Datoen og Tiden er ikke tilgændlig .");
+        }
+    }
+
+    public void sletBooking() {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            // Beder om navn
+            System.out.println("Indtast navn på bookingen, der skal slettes:");
+            String nameToDelete = sc.nextLine().trim();
+
+            // Beder om dato
+            System.out.println("Indtast dato for bookingen, der skal slettes (MM-dd):");
+            String dateInput = sc.nextLine().trim();
+            int currentYear = LocalDate.now().getYear();
+            String fullDateInput = currentYear + "-" + dateInput;  // Tilføjer det aktuelle år
+
+            // Fortolker dato
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate dateToDelete = LocalDate.parse(fullDateInput, dateFormatter);
+
+            // Beder om tid
+            System.out.println("Indtast tid for bookingen, der skal slettes (HH:mm):");
+            LocalTime timeToDelete = LocalTime.parse(sc.nextLine().trim(), DateTimeFormatter.ofPattern("HH:mm"));
+
+            // Sletter booking, der matcher alle tre kriterier
+            boolean removed = bookings.removeIf(booking ->
+                    booking.name.equals(nameToDelete) &&
+                            booking.bookingDate.equals(dateToDelete) &&
+                            booking.bookingTime.equals(timeToDelete)
+            );
+
+            // Printer resultatet af sletningsforsøget
+            if (removed) {
+                System.out.println("Booking for " + nameToDelete + " på " + dateToDelete + " kl. " + timeToDelete + " er slettet.");
+            } else {
+                System.out.println("Ingen matchende booking fundet for sletning.");
+            }
+        } catch (DateTimeParseException e) {
+            System.out.println("Ugyldigt dato- eller tidsformat. Prøv igen med det korrekte format.");
         }
     }
 
