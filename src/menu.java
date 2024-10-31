@@ -1,11 +1,16 @@
+import java.io.IOException;
 import java.util.Scanner;
 
   class Menu {
      Scanner scanner = new Scanner(System.in);
      bookingSystem system = new bookingSystem();
      password password = new password();
+     kalenderSimpel kalender = new kalenderSimpel();
 
-     public void menu() {
+      Menu() throws IOException {
+      }
+
+      public void menu() throws IOException {
          while (true) {
              System.out.println("\n--- Salon Menu ---");
              System.out.println("1. Opret en booking");
@@ -40,6 +45,7 @@ import java.util.Scanner;
                      break;
 
                  case "5":
+                     kalender.nyBooking();
                      System.exit(0);
                      break;
 
