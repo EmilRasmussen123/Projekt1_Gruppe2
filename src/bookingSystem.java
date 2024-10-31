@@ -10,19 +10,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 class bookingSystem {
-    static ArrayList<booking> bookings; //liste over bookings
+
+    static kalenderSimpel kalender = new kalenderSimpel();
+    static ArrayList<booking> bookings;
 
     static {
         try {
-            bookings = kalenderSimpel.bookingerObjektListe();
+            bookings = kalender.bookingerObjektListe();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    ; //liste over bookings
+
     Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
 
-    public bookingSystem(){
+    public bookingSystem() throws IOException {
         // her kan man tilføje feriedage hvis nu harry skal på feriejuleaften fx.
 
         feriedage.add(LocalDate.of(2024,12,24));

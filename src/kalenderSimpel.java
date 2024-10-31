@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class kalenderSimpel {
 
-    static ArrayList<String> midlertidigListe () throws IOException {
+    ArrayList<String> midlertidigListe () throws IOException {
         FileReader kalenderReader = new FileReader("src//Kalender.txt");
         BufferedReader kalenderReaderBuffed = new BufferedReader(kalenderReader);
         ArrayList<String> bookinger = new ArrayList<>();              //Lav txt filen til en ArrayListe
@@ -17,7 +17,7 @@ public class kalenderSimpel {
         return bookinger;
     }
 
-    static ArrayList<booking> bookingerObjektListe () throws IOException {
+    ArrayList<booking> bookingerObjektListe () throws IOException {
         ArrayList<String> stringListe = midlertidigListe();
         ArrayList<booking> objektListe = new ArrayList<>();             //Liste af objekter
 
@@ -33,10 +33,10 @@ public class kalenderSimpel {
             }
             }
         return objektListe;
-    }       //Skal tilføjes bookingsystem, linje 10 - ArrayList<booking> bookings = kalenderSimpel.bookingObjektListe;
+    }
 
-    static void nyBooking() throws IOException {      //Skal have booking.toString som input
-        FileWriter kalenderWriter = new FileWriter("src//Kalender.txt", true);
+    void nyBooking() throws IOException {      //Skal have booking.toString som input
+        FileWriter kalenderWriter = new FileWriter("src//Kalender.txt");
         PrintWriter kalenderPrinter = new PrintWriter(kalenderWriter);
 
         for (booking booking : bookingSystem.bookings){
