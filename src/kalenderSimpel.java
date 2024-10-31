@@ -33,7 +33,7 @@ public class kalenderSimpel {
             }
             }
         return objektListe;
-    }       //Skal tilføjes bookingsystem, linje 10 - ArrayList<booking> bookings = kalenderSimpel.bookingObjektListe;
+    }
 
     void nyBooking() throws IOException {      //Skal have booking.toString som input
         FileWriter kalenderWriter = new FileWriter("src//Kalender.txt");
