@@ -9,10 +9,10 @@ import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Set;
 
-class bookingSystem {
+class BookingSystem {
 
-    static kalenderSimpel kalender = new kalenderSimpel();
-    static ArrayList<booking> bookings;
+    static KalenderSimpel kalender = new KalenderSimpel();
+    static ArrayList<Booking> bookings;
 
     static {
         try {
@@ -27,17 +27,16 @@ class bookingSystem {
 
     Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
 
-    public bookingSystem() throws IOException {
+    public BookingSystem() throws IOException {
         // her kan man tilføje feriedage hvis nu harry skal på feriejuleaften fx.
-
         feriedage.add(LocalDate.of(2024,12,24));
     }
 
     public void createBooking() {
         Scanner sc = new Scanner(System.in);
         String name = "";
-        LocalDate bookingDate = new bookingDato(feriedage).setBookingDate(sc);
-        LocalTime bookingTime = new bookingTid().setBookingTime(sc);
+        LocalDate bookingDate = new BookingDato(feriedage).setBookingDate(sc);
+        LocalTime bookingTime = new BookingTid().setBookingTime(sc);
 
         //Tjekker først om bookingdate og bookingtime er ledig for, du kan skrive navnet
         if (isBookingAvailable(bookingDate, bookingTime)){
@@ -49,7 +48,7 @@ class bookingSystem {
                 }
             }
 
-            booking newbooking = new booking(name, bookingDate, bookingTime);
+            Booking newbooking = new Booking(name, bookingDate, bookingTime);
             bookings.add(newbooking);
 
             System.out.println("Booking Tilføjet:");
@@ -101,7 +100,7 @@ class bookingSystem {
 
     //Søger for den nye booking ikke matcher den forrige
     private boolean isBookingAvailable(LocalDate bookingDate, LocalTime bookingTime) {
-        for (booking booking : bookings) {
+        for (Booking booking : bookings) {
             if (booking.bookingDate.equals(bookingDate) && booking.bookingTime.equals(bookingTime)) {
                 return false;
             }
@@ -114,17 +113,17 @@ class bookingSystem {
             System.out.println("Ingen Booking Tilgængelig.");
         } else {
             System.out.println("Alle Bookings:");
-            for (booking booking : bookings) {
+            for (Booking booking : bookings) {
                 System.out.println(booking);
             }
         }
     }
 }
 //
-class bookingDato {
+class BookingDato {
     Set<LocalDate> feriedage;
 
-    public bookingDato(Set<LocalDate> feriedage){
+    public BookingDato(Set<LocalDate> feriedage){
         this.feriedage = feriedage;
     }
     public LocalDate setBookingDate(Scanner sc) {
@@ -165,7 +164,7 @@ class bookingDato {
 }
 
 //
-class bookingTid {
+class BookingTid {
     public LocalTime setBookingTime(Scanner sc) {
         LocalTime bookingTime = null;
 

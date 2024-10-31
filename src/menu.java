@@ -5,19 +5,18 @@ class Menu {
 
     public static void main(String[] args) throws IOException {
 
-
         Scanner scanner = new Scanner(System.in);
-        bookingSystem system = new bookingSystem();
-        password password = new password();
-        kalenderSimpel kalender = new kalenderSimpel();
+        BookingSystem system = new BookingSystem();
+        Password password = new Password();
+        KalenderSimpel kalender = new KalenderSimpel();
 
 
             while (true) {
                 System.out.println("\n--- Salon Menu ---");
                 System.out.println("1. Opret en booking");
-                System.out.println("2. slet en booking");
+                System.out.println("2. Slet en booking");
                 System.out.println("3. Vis eksisterende bookinger");
-                System.out.println("4. indtast feriedage");
+                System.out.println("4. Indtast feriedage");
                 System.out.println("5. Afslut");
                 System.out.println("6. Password");
                 System.out.print("Vælg en mulighed (1-6): ");

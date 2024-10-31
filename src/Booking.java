@@ -1,12 +1,12 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class booking {
+public class Booking {
     String name;
     LocalDate bookingDate;
     LocalTime bookingTime;
 
-    booking(String name, LocalDate bookingDate, LocalTime bookingTime) {
+    Booking(String name, LocalDate bookingDate, LocalTime bookingTime) {
         this.name = name;
         this.bookingDate = bookingDate;
         this.bookingTime = bookingTime;

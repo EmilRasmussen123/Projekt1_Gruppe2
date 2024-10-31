@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class password {
+public class Password {
     private static String PASSWORD = "hairyharry";
 
     // Metode der tjekker adgangskoden
