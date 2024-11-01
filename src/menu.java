@@ -10,7 +10,6 @@ class Menu {
         Password password = new Password();
         KalenderSimpel kalender = new KalenderSimpel();
 
-
             while (true) {
                 System.out.println("\n--- Salon Menu ---");
                 System.out.println("1. Opret en booking");
@@ -40,7 +39,7 @@ class Menu {
                         break;
 
                     case "4":
-                        //System.indtastFeriedage
+                        system.ekstraFerieDag();
                         menuHelper();
                         break;
 
@@ -61,6 +60,7 @@ class Menu {
                 }
             }
         }
+
         public static void menuHelper () {
             Scanner scanner = new Scanner(System.in);
             System.out.println();

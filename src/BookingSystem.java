@@ -22,8 +22,7 @@ class BookingSystem {
         }
     }
 
-    ; //liste over bookings
-
+     //liste over bookings
 
     Set<LocalDate> feriedage = new HashSet<>(); // liste over feriedage
 
@@ -98,6 +97,29 @@ class BookingSystem {
         }
     }
 
+    public void ekstraFerieDag() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Indtast feriedage (yyyy-MM-dd), eller tryk '0' for at afslutte:");
+        while (true) {
+            System.out.print("Indtast dato (yyyy-MM-dd): ");
+            String dateInput = sc.nextLine().trim();
+            if (dateInput.equalsIgnoreCase("0")) {
+                break;
+            }
+            try {
+                LocalDate ferieDag = LocalDate.parse(dateInput);
+                if (!feriedage.contains(ferieDag)) {
+                    feriedage.add(ferieDag);
+                    System.out.println("Feriedag tilføjet: " + ferieDag);
+                } else {
+                    System.out.println("Denne feriedag er allerede tilføjet.");
+                }
+            } catch (DateTimeParseException e) {
+                System.out.println("Ugyldigt format. Brug venligst formatet yyyy-MM-dd.");
+            }
+        }
+    }
+
     //Søger for den nye booking ikke matcher den forrige
     private boolean isBookingAvailable(LocalDate bookingDate, LocalTime bookingTime) {
         for (Booking booking : bookings) {
@@ -162,7 +184,6 @@ class BookingDato {
         return bookingDate;
     }
 }
-
 //
 class BookingTid {
     public LocalTime setBookingTime(Scanner sc) {
