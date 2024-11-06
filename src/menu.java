@@ -10,6 +10,10 @@ class Menu {
         Password password = new Password();
         KalenderSimpel kalender = new KalenderSimpel();
 
+        while (!password.verifyPassword()) {
+            // Gentager, indtil den korrekte adgangskode er indtastet
+        }
+
             while (true) {
                 System.out.println("\n--- Salon Menu ---");
                 System.out.println("1. Opret en booking");
